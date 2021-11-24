@@ -1,0 +1,5 @@
+{
+  "name": "HASS.Agent Notifier",
+  "domains": ["notify"],
+  "render_readme": true
+}

@@ -1,0 +1,10 @@
+{
+    "domain": "hass_agent_notifier",
+    "name": "HASS.Agent Notifier",
+    "documentation": "https://github.com/LAB02-Research/HASS.Agent-Notifier",
+    "issue_tracker": "https://github.com/LAB02-Research/HASS.Agent-Notifier/issues",
+    "dependencies": [],
+    "codeowners": ["@LAB02-Admin"],
+    "version": "2021.8.6",
+    "requirements": []
+}
