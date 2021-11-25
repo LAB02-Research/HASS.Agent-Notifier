@@ -6,5 +6,6 @@
     "dependencies": [],
     "codeowners": ["@LAB02-Admin"],
     "version": "2021.8.6",
-    "requirements": []
+    "requirements": [],
+    "iot_class": "local_push"
 }
