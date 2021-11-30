@@ -47,6 +47,10 @@ Replace `{device_ip}` with the IP of the device that has an HASS.Agent instance 
 
 Restart Home Assistant to load your configuration.
 
+The port needs to be open on the target device. To do so, you can run this command in an elevated prompt:
+
+`netsh advfirewall firewall add rule name="HASS.Agent Notifier" dir=in action=allow protocol=TCP localport=5115`
+
 
 Usage
 ---
