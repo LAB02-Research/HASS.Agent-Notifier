@@ -5,7 +5,7 @@
     "issue_tracker": "https://github.com/LAB02-Research/HASS.Agent-Notifier/issues",
     "dependencies": [],
     "codeowners": ["@LAB02-Admin"],
-    "version": "2021.8.6",
+    "version": "2021.11.30",
     "requirements": [],
     "iot_class": "local_push"
 }
