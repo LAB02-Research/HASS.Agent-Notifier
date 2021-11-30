@@ -28,7 +28,7 @@ Installation
 
 The easiest way to install is to use <a href="https://hacs.xyz" target="_blank">HACS</a>. Simply search for **HASS.Agent Notifier**, install and restart Home Assistant.
 
-If you want to manually install, copy the `hass.agent notifier` folder into the `config\custom_components` folder of your Home Assistant instance, and restart.
+If you want to manually install, copy the `hass_agent_notifier` folder into the `config\custom_components` folder of your Home Assistant instance, and restart.
 
 
 Configuration
