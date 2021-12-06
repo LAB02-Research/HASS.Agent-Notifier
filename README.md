@@ -8,31 +8,34 @@ This <a href="https://www.home-assistant.io" target="_blank">Home Assistant</a> 
 
 Note: it won't be of much use if you don't have HASS.Agent installed & configured on at least one device.
 
-Contents
-========
+----
+
+### Contents
 
  * [Functionality](#functionality)
  * [Installation](#installation)
  * [Configuration](#configuration)
  * [Usage](#usage)
  * [Wishlist](#wishlist)
+ * [License](#license)
 
-Functionality
----
+----
+
+### Functionality
 
 Currently, it's possible to send normal (text-based) and image notifications. 
 
+----
 
-Installation
----
+### Installation
 
 The easiest way to install is to use <a href="https://hacs.xyz" target="_blank">HACS</a>. Simply search for **HASS.Agent Notifier**, install and restart Home Assistant.
 
 If you want to manually install, copy the `hass_agent_notifier` folder into the `config\custom_components` folder of your Home Assistant instance, and restart.
 
+----
 
-Configuration
----
+### Configuration
 
 This integration exposes itself as a <a href="https://www.home-assistant.io/integrations/notify/" target="_blank">notifications integration</a>, and has to be configured as such:
 
@@ -51,11 +54,11 @@ The port needs to be open on the target device. To do so, you can run this comma
 
 `netsh advfirewall firewall add rule name="HASS.Agent Notifier" dir=in action=allow protocol=TCP localport=5115`
 
+----
 
-Usage
----
+### Usage
 
-### General
+#### General
 
 Currently, there are four variables you can set:
 
@@ -64,7 +67,7 @@ Currently, there are four variables you can set:
  * `image`: http(s) url containing the location of an image [optional]
  * `duration`: duration (in seconds) for which the popup will be shown [optional]
 
-### Text notification
+#### Text notification
 
 ```yaml
   action:
@@ -73,7 +76,7 @@ Currently, there are four variables you can set:
         message: "This is a test message."
 ```
 
-### Text notification with title and duration
+#### Text notification with title and duration
 
 ```yaml
   action:
@@ -85,7 +88,7 @@ Currently, there are four variables you can set:
           duration: 3
 ```
 
-### Image notification
+#### Image notification
 
 ```yaml
   action:
@@ -96,9 +99,9 @@ Currently, there are four variables you can set:
           image: "http://10.0.0.6:1234/jpeg/image.jpg"
 ```
 
+----
 
-Wishlist
----
+### Wishlist
 
 List of things I want to add somewhere down the road:
 
@@ -106,3 +109,9 @@ List of things I want to add somewhere down the road:
  * add 'critical' type to attract more attention
 
 If you have any other wishes, feel free to submit a ticket.
+
+----
+
+### License
+
+HASS.Agent Notifier and HASS.Agent are released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>.
