@@ -24,11 +24,14 @@ from homeassistant.components.notify import (
     PLATFORM_SCHEMA,
     BaseNotificationService,
 )
-from homeassistant.const import (
+"""from homeassistant.const import (
     CONF_RESOURCE,
     HTTP_BAD_REQUEST,
     HTTP_INTERNAL_SERVER_ERROR,
     HTTP_OK,
+)"""
+from homeassistant.const import (
+    CONF_RESOURCE,
 )
 import homeassistant.helpers.config_validation as cv
 
@@ -85,11 +88,11 @@ class HassAgentNotificationService(BaseNotificationService):
             timeout=10
         )
 
-        if HTTP_INTERNAL_SERVER_ERROR <= response.status_code < 600:
+        """        if HTTP_INTERNAL_SERVER_ERROR <= response.status_code < 600:
             _LOGGER.exception("Server error. Response %d: %s:", response.status_code, response.reason)
         elif HTTP_BAD_REQUEST <= response.status_code < HTTP_INTERNAL_SERVER_ERROR:
             _LOGGER.exception("Client error. Response %d: %s:", response.status_code, response.reason)
         elif HTTP_OK <= response.status_code < 300:
             _LOGGER.debug("Success. Response %d: %s:", response.status_code, response.reason)
         else:
-            _LOGGER.debug("Response %d: %s:", response.status_code, response.reason)
+            _LOGGER.debug("Response %d: %s:", response.status_code, response.reason)"""
