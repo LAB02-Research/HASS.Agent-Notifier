@@ -6,7 +6,7 @@
 
 This <a href="https://www.home-assistant.io" target="_blank">Home Assistant</a> integration allows you to send notifications to <a href="https://github.com/LAB02-Research/HASS.Agent" target="_blank">HASS.Agent</a>, a Windows-based Home Assistant client.
 
-Note: it won't be of much use if you don't have HASS.Agent installed & configured on at least one device.
+Note: it won't be of much use if you don't have HASS.Agent installed & configured on at least one PC (or Windows based device).
 
 ----
 
@@ -15,6 +15,7 @@ Note: it won't be of much use if you don't have HASS.Agent installed & configure
  * [Functionality](#functionality)
  * [Installation](#installation)
  * [Configuration](#configuration)
+ * [Installation and Configuration Summary](#installation-and-configuration-summary)
  * [Usage](#usage)
  * [Wishlist](#wishlist)
  * [License](#license)
@@ -46,13 +47,26 @@ notify:
   resource: http://{device_ip}:5115/notify
 ```
 
-Replace `{device_ip}` with the IP of the device that has an HASS.Agent instance running. Optionally replace `5115` if you've configured a different port.
+Replace `{device_ip}` with the IP of the device that has an HASS.Agent instance running. To find your IP, run `ipconfig` in a command prompt on your PC. Look for the value after `IPv4 Address`. Optionally replace `5115` if you've configured a different port, normally you shouldn't have to.
 
 Restart Home Assistant to load your configuration.
 
-The port needs to be open on the target device. To do so, you can run this command in an elevated prompt:
+The port needs to be open on the target device. HASS.Agent will offer to do this for you during the onboarding process. 
+To do so manually, you can run this command in an elevated prompt:
 
 `netsh advfirewall firewall add rule name="HASS.Agent Notifier" dir=in action=allow protocol=TCP localport=5115`
+
+----
+
+### Installation and Configuration Summary
+
+Quick summary to get things working:
+
+- Install **HASS.Agent-Notifier** integration, either through HACS or manually
+- Reboot Home Assistant
+- Create a `notify` entity, make sure you enter the right IP for your PC
+- Reboot Home Assistant
+- Start adding the new entity to your automations & scripts :)
 
 ----
 
@@ -98,6 +112,18 @@ Currently, there are four variables you can set:
         data:
           image: "http://10.0.0.6:1234/jpeg/image.jpg"
 ```
+
+#### Script GUI examples
+
+This is the sequence part of a test script to send a text-only message, created through the Home Assistant GUI:
+
+![Script Test Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_script_example.png)
+
+This is the same script, but with an image added to the notification:
+
+![Script Test Image Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_script_image_example.png)
+
+You can use the new <a href="https://www.home-assistant.io/lovelace/button/" target="_blank">Button Card</a> to trigger your test scripts.
 
 ----
 
