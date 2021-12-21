@@ -20,6 +20,7 @@ Note: it won't be of much use if you don't have HASS.Agent installed & configure
  * [Functionality](#functionality)
  * [Installation](#installation)
  * [Configuration](#configuration)
+ * [Debugging](#debugging)
  * [Installation and Configuration Summary](#installation-and-configuration-summary)
  * [Usage](#usage)
  * [Wishlist](#wishlist)
@@ -60,6 +61,30 @@ The port needs to be open on the target device. HASS.Agent will offer to do this
 To do so manually, you can run this command in an elevated prompt:
 
 `netsh advfirewall firewall add rule name="HASS.Agent Notifier" dir=in action=allow protocol=TCP localport=5115`
+
+----
+
+### Debugging
+
+If something's not working as it should, while everything's configured and HASS.Agent isn't showing any errors in its logs, browse to the following URL from another PC on the same network as HASS.Agent: `http://{hass_agent_ip}:5115`. Make sure to change `{hass_agent_ip}` to the IP of the PC where HASS.Agent's installed.
+
+If HASS.Agent is configured and the firewall rule's active, you'll see: `HASS.Agent Active`. 
+
+If not, something is blocking access to HASS.Agent. Add the following snippet to your configuration.yaml to enable debug logging for the integration:
+
+
+```yaml
+logger:
+  default: warning
+  logs:
+    custom_components.hass_agent_notifier: debug
+```
+
+Reboot Home Assistant. Whenever you send a message, this should show up in your logs:
+
+![Debug Output](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_debug_logging.png)
+
+If not, please open a ticket a post your log output.
 
 ----
 
