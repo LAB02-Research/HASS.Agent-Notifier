@@ -24,12 +24,9 @@ from homeassistant.components.notify import (
     PLATFORM_SCHEMA,
     BaseNotificationService,
 )
-"""from homeassistant.const import (
-    CONF_RESOURCE,
-    HTTP_BAD_REQUEST,
-    HTTP_INTERNAL_SERVER_ERROR,
-    HTTP_OK,
-)"""
+
+from http import HTTPStatus
+
 from homeassistant.const import (
     CONF_RESOURCE,
 )
@@ -51,6 +48,8 @@ def get_service(hass, config, discovery_info=None):
     """Get the HASS Agent notification service."""
     resource = config.get(CONF_RESOURCE)
 
+    _LOGGER.info("Service created")
+
     return HassAgentNotificationService(
         hass,
         resource
@@ -71,6 +70,8 @@ class HassAgentNotificationService(BaseNotificationService):
 
     def send_message(self, message="", title="", **kwargs):
         """Send the message to the provided resource."""
+        _LOGGER.debug("Preparing notification ..")
+
         data = kwargs.get(ATTR_DATA, None)
         image = data.get(ATTR_IMAGE) if data is not None and ATTR_IMAGE in data else None
         duration = data.get(ATTR_DURATION) if data is not None and ATTR_DURATION in data else 0
@@ -82,17 +83,33 @@ class HassAgentNotificationService(BaseNotificationService):
             'duration': duration
         })
 
+        _LOGGER.debug("Sending notification ..")
+
         response = requests.post(
             self._resource,
             json=payload,
             timeout=10
         )
 
-        """        if HTTP_INTERNAL_SERVER_ERROR <= response.status_code < 600:
-            _LOGGER.exception("Server error. Response %d: %s:", response.status_code, response.reason)
-        elif HTTP_BAD_REQUEST <= response.status_code < HTTP_INTERNAL_SERVER_ERROR:
-            _LOGGER.exception("Client error. Response %d: %s:", response.status_code, response.reason)
-        elif HTTP_OK <= response.status_code < 300:
-            _LOGGER.debug("Success. Response %d: %s:", response.status_code, response.reason)
+        _LOGGER.debug("Checking result ..")
+
+        if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
+            _LOGGER.exception("Server error. Response %d: %s", response.status_code, response.reason)
+        elif response.status_code == HTTPStatus.BAD_REQUEST:
+            _LOGGER.exception("Client error (bad request). Response %d: %s", response.status_code, response.reason)
+        elif response.status_code == HTTPStatus.NOT_FOUND:
+            _LOGGER.exception("Server error (not found). Response %d: %s", response.status_code, response.reason)
+        elif response.status_code == HTTPStatus.METHOD_NOT_ALLOWED:
+            _LOGGER.exception("Server error (method not allowed). Response %d", response.status_code)
+        elif response.status_code == HTTPStatus.REQUEST_TIMEOUT:
+            _LOGGER.exception("Server error (request timeout). Response %d: %s", response.status_code, response.reason)
+        elif response.status_code == HTTPStatus.NOT_IMPLEMENTED:
+            _LOGGER.exception("Server error (not implemented). Response %d: %s", response.status_code, response.reason)
+        elif response.status_code == HTTPStatus.SERVICE_UNAVAILABLE:
+            _LOGGER.exception("Server error (service unavailable). Response %d", response.status_code)
+        elif response.status_code == HTTPStatus.GATEWAY_TIMEOUT:
+            _LOGGER.exception("Network error (gateway timeout). Response %d: %s", response.status_code, response.reason)
+        elif response.status_code == HTTPStatus.OK:
+            _LOGGER.debug("Success. Response %d: %s", response.status_code, response.reason)
         else:
-            _LOGGER.debug("Response %d: %s:", response.status_code, response.reason)"""
+            _LOGGER.debug("Unknown response %d: %s", response.status_code, response.reason)
