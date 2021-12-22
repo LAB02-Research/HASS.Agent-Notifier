@@ -20,9 +20,9 @@ Note: it won't be of much use if you don't have HASS.Agent installed & configure
  * [Functionality](#functionality)
  * [Installation](#installation)
  * [Configuration](#configuration)
- * [Debugging](#debugging)
  * [Installation and Configuration Summary](#installation-and-configuration-summary)
  * [Usage](#usage)
+ * [Debugging](#debugging)
  * [Wishlist](#wishlist)
  * [License](#license)
 
@@ -61,30 +61,6 @@ The port needs to be open on the target device. HASS.Agent will offer to do this
 To do so manually, you can run this command in an elevated prompt:
 
 `netsh advfirewall firewall add rule name="HASS.Agent Notifier" dir=in action=allow protocol=TCP localport=5115`
-
-----
-
-### Debugging
-
-If something's not working as it should, while everything's configured and HASS.Agent isn't showing any errors in its logs, browse to the following URL from another PC on the same network as HASS.Agent: `http://{hass_agent_ip}:5115`. Make sure to change `{hass_agent_ip}` to the IP of the PC where HASS.Agent's installed.
-
-If HASS.Agent is configured and the firewall rule's active, you'll see: `HASS.Agent Active`. 
-
-If not, something is blocking access to HASS.Agent. Add the following snippet to your configuration.yaml to enable debug logging for the integration:
-
-
-```yaml
-logger:
-  default: warning
-  logs:
-    custom_components.hass_agent_notifier: debug
-```
-
-Reboot Home Assistant. Whenever you send a message, this should show up in your logs:
-
-![Debug Output](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_debug_logging.png)
-
-If not, please open a ticket a post your log output.
 
 ----
 
@@ -143,6 +119,32 @@ Currently, there are four variables you can set:
           image: "http://10.0.0.6:1234/jpeg/image.jpg"
 ```
 
+#### Camera Proxy
+
+As pointed out by [@brianhanifin]( https://github.com/brianhanifin ) in <a href="https://github.com/LAB02-Research/HASS.Agent/issues/5" target="_blank">this issue</a>, you can also use Home Assistant's camera proxy. This way you don't have to share the credentials etc. of your camera. Home Assistant will provide a token that's valid for 5 minutes, so it's safe to use.
+
+Example script:
+
+```yaml
+notification_test:
+  alias: Notification Test
+  variables:
+    image: |
+      {%- set image = "http://hass.local:8123" + state_attr("camera.garden","entity_picture") %}
+      {{ image }}
+  sequence:
+  - service: notify.hass_agent_test
+    data:
+      title: Test
+      message: "This is a test message with an image."
+      data:
+        image: "{{ image }}"
+  mode: single
+  icon: mdi:bell
+```
+
+Optionally change `hass.local` to the mDNS/IP of you Home Assistant instance, and change `garden` to the name of your camera - or use another variable as provided in the linked issue.
+
 #### Script GUI examples
 
 This is the sequence part of a test script to send a text-only message, created through the Home Assistant GUI:
@@ -154,6 +156,30 @@ This is the same script, but with an image added to the notification:
 ![Script Test Image Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_script_image_example.png)
 
 You can use the new <a href="https://www.home-assistant.io/lovelace/button/" target="_blank">Button Card</a> to trigger your test scripts.
+
+----
+
+### Debugging
+
+If something's not working as it should, while everything's configured and HASS.Agent isn't showing any errors in its logs, browse to the following URL from another PC on the same network as HASS.Agent: `http://{hass_agent_ip}:5115`. Make sure to change `{hass_agent_ip}` to the IP of the PC where HASS.Agent's installed.
+
+If HASS.Agent is configured and the firewall rule's active, you'll see: `HASS.Agent Active`. 
+
+If not, something is blocking access to HASS.Agent. Add the following snippet to your configuration.yaml to enable debug logging for the integration:
+
+
+```yaml
+logger:
+  default: warning
+  logs:
+    custom_components.hass_agent_notifier: debug
+```
+
+Reboot Home Assistant. Whenever you send a message, this should show up in your logs:
+
+![Debug Output](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_debug_logging.png)
+
+If not, please open a ticket a post your log output.
 
 ----
 
