@@ -143,7 +143,7 @@ notification_test:
   icon: mdi:bell
 ```
 
-Optionally change `hass.local` to the mDNS/IP of you Home Assistant instance, and change `garden` to the name of your camera - or use another variable as provided in the linked issue.
+Optionally change `hass.local` to the mDNS/IP of your Home Assistant instance, and change `garden` to the name of your camera - or use another variable as provided in the linked issue.
 
 #### Script GUI examples
 
