@@ -163,6 +163,7 @@ List of things I want to add somewhere down the road:
 
  * ability to add commands
  * add 'critical' type to attract more attention
+ * show a videostream for x seconds with size y (small/normal/fullscreen) on position z (bottom right, center screen, etc)
 
 If you have any other wishes, feel free to submit a ticket.
 
