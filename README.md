@@ -11,6 +11,11 @@ This <a href="https://www.home-assistant.io" target="_blank">Home Assistant</a> 
 
 Note: it won't be of much use if you don't have HASS.Agent installed & configured on at least one PC (or Windows based device).
 
+----
+
+Developing this tool takes up quite a bit of time. It's completely free, and it'll stay that way without restrictions.<br/>
+However, like most developers, I run on caffeïne - so a cup of coffee is always very much appreciated! 
+
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lab02research)
 
 ----
