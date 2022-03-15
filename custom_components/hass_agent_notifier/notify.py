@@ -85,31 +85,37 @@ class HassAgentNotificationService(BaseNotificationService):
 
         _LOGGER.debug("Sending notification ..")
 
-        response = requests.post(
-            self._resource,
-            json=payload,
-            timeout=10
-        )
+        try:
 
-        _LOGGER.debug("Checking result ..")
+            response = requests.post(
+                self._resource,
+                json=payload,
+                timeout=10
+            )
 
-        if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
-            _LOGGER.exception("Server error. Response %d: %s", response.status_code, response.reason)
-        elif response.status_code == HTTPStatus.BAD_REQUEST:
-            _LOGGER.exception("Client error (bad request). Response %d: %s", response.status_code, response.reason)
-        elif response.status_code == HTTPStatus.NOT_FOUND:
-            _LOGGER.exception("Server error (not found). Response %d: %s", response.status_code, response.reason)
-        elif response.status_code == HTTPStatus.METHOD_NOT_ALLOWED:
-            _LOGGER.exception("Server error (method not allowed). Response %d", response.status_code)
-        elif response.status_code == HTTPStatus.REQUEST_TIMEOUT:
-            _LOGGER.exception("Server error (request timeout). Response %d: %s", response.status_code, response.reason)
-        elif response.status_code == HTTPStatus.NOT_IMPLEMENTED:
-            _LOGGER.exception("Server error (not implemented). Response %d: %s", response.status_code, response.reason)
-        elif response.status_code == HTTPStatus.SERVICE_UNAVAILABLE:
-            _LOGGER.exception("Server error (service unavailable). Response %d", response.status_code)
-        elif response.status_code == HTTPStatus.GATEWAY_TIMEOUT:
-            _LOGGER.exception("Network error (gateway timeout). Response %d: %s", response.status_code, response.reason)
-        elif response.status_code == HTTPStatus.OK:
-            _LOGGER.debug("Success. Response %d: %s", response.status_code, response.reason)
-        else:
-            _LOGGER.debug("Unknown response %d: %s", response.status_code, response.reason)
+            _LOGGER.debug("Checking result ..")
+
+            if response.status_code == HTTPStatus.INTERNAL_SERVER_ERROR:
+                _LOGGER.error("Server error. Response %d: %s", response.status_code, response.reason)
+            elif response.status_code == HTTPStatus.BAD_REQUEST:
+                _LOGGER.error("Client error (bad request). Response %d: %s", response.status_code, response.reason)
+            elif response.status_code == HTTPStatus.NOT_FOUND:
+                _LOGGER.debug("Server error (not found). Response %d: %s", response.status_code, response.reason)
+            elif response.status_code == HTTPStatus.METHOD_NOT_ALLOWED:
+                _LOGGER.error("Server error (method not allowed). Response %d", response.status_code)
+            elif response.status_code == HTTPStatus.REQUEST_TIMEOUT:
+                _LOGGER.debug("Server error (request timeout). Response %d: %s", response.status_code, response.reason)
+            elif response.status_code == HTTPStatus.NOT_IMPLEMENTED:
+                _LOGGER.error("Server error (not implemented). Response %d: %s", response.status_code, response.reason)
+            elif response.status_code == HTTPStatus.SERVICE_UNAVAILABLE:
+                _LOGGER.error("Server error (service unavailable). Response %d", response.status_code)
+            elif response.status_code == HTTPStatus.GATEWAY_TIMEOUT:
+                _LOGGER.error("Network error (gateway timeout). Response %d: %s", response.status_code, response.reason)
+            elif response.status_code == HTTPStatus.OK:
+                _LOGGER.debug("Success. Response %d: %s", response.status_code, response.reason)
+            else:
+                _LOGGER.debug("Unknown response %d: %s", response.status_code, response.reason)
+
+        except Exception as e:
+            _LOGGER.debug("Error sending message: %s", e)
+
