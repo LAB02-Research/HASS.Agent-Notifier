@@ -151,11 +151,11 @@ Optionally change `hass.local` to the mDNS/IP of your Home Assistant instance, a
 
 This is the sequence part of a test script to send a text-only message, created through the Home Assistant GUI:
 
-![Script Test Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_script_example.png)
+![Script Test Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/images/notifier_script_example.png)
 
 This is the same script, but with an image added to the notification:
 
-![Script Test Image Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_script_image_example.png)
+![Script Test Image Notification](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/images/notifier_script_image_example.png)
 
 You can use the new <a href="https://www.home-assistant.io/lovelace/button/" target="_blank">Button Card</a> to trigger your test scripts.
 
@@ -179,7 +179,7 @@ logger:
 
 Reboot Home Assistant. Whenever you send a message, this should show up in your logs:
 
-![Debug Output](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/Images/notifier_debug_logging.png)
+![Debug Output](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/images/notifier_debug_logging.png)
 
 If not, please open a ticket and post your log output.
 
