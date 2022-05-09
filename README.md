@@ -24,6 +24,7 @@ Note: it won't be of much use if you don't have HASS.Agent installed & configure
  * [Configuration](#configuration)
  * [Installation and Configuration Summary](#installation-and-configuration-summary)
  * [Usage](#usage)
+ * [Help](#help)
  * [Debugging](#debugging)
  * [Wishlist](#wishlist)
  * [License](#license)
@@ -161,7 +162,15 @@ You can use the new <a href="https://www.home-assistant.io/lovelace/button/" tar
 
 ----
 
+### Help
+
+There's a section dedicated to notification support in [the documentation](https://hassagent.readthedocs.io/). It'll help you troubleshoot common problems, and provide some examples.
+
+----
+
 ### Debugging
+
+**Note: make sure you check [the documentation](https://hassagent.readthedocs.io/) for common troubleshooting help.**
 
 If something's not working as it should, while everything's configured and HASS.Agent isn't showing any errors in its logs, browse to the following URL from another PC on the same network as HASS.Agent: `http://{hass_agent_ip}:5115`. Make sure to change `{hass_agent_ip}` to the IP of the PC where HASS.Agent's installed.
 
