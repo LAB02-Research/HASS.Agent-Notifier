@@ -46,7 +46,7 @@ If you want to manually install, copy the `hass_agent_notifier` folder into the 
 
 ### Configuration
 
-This integration exposes itself as a <a href="https://www.home-assistant.io/integrations/notify/" target="_blank">notifications integration</a>, and has to be configured as such:
+This integration exposes itself as a <a href="https://www.home-assistant.io/integrations/notify/" target="_blank">notifications integration</a>, and can be configured by adding this snippet in your `configuration.yaml` file:
 
 ```yaml
 notify: 
