@@ -1,5 +1,5 @@
 {
   "name": "HASS.Agent Notifier",
-  "domains": ["notify"],
+  "homeassistant": "2021.4",
   "render_readme": true
 }
