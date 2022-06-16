@@ -26,7 +26,6 @@ Note: it won't be of much use if you don't have HASS.Agent installed & configure
  * [Usage](#usage)
  * [Help](#help)
  * [Debugging](#debugging)
- * [Wishlist](#wishlist)
  * [License](#license)
 
 ----
@@ -191,18 +190,6 @@ Reboot Home Assistant. Whenever you send a message, this should show up in your 
 ![Debug Output](https://raw.githubusercontent.com/LAB02-Research/HASS.Agent/main/images/notifier_debug_logging.png)
 
 If not, please open a ticket and post your log output.
-
-----
-
-### Wishlist
-
-List of things I want to add somewhere down the road:
-
- * ability to add commands
- * add 'critical' type to attract more attention
- * show a videostream for x seconds with size y (small/normal/fullscreen) on position z (bottom right, center screen, etc)
-
-If you have any other wishes, feel free to submit a ticket.
 
 ----
 
