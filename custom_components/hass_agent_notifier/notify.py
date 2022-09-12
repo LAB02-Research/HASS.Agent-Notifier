@@ -40,10 +40,6 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 _LOGGER = logging.getLogger(__name__)
 
-ATTR_IMAGE = 'image'
-ATTR_DURATION = 'duration'
-
-
 def get_service(hass, config, discovery_info=None):
     """Get the HASS Agent notification service."""
     resource = config.get(CONF_RESOURCE)
@@ -73,14 +69,11 @@ class HassAgentNotificationService(BaseNotificationService):
         _LOGGER.debug("Preparing notification ..")
 
         data = kwargs.get(ATTR_DATA, None)
-        image = data.get(ATTR_IMAGE) if data is not None and ATTR_IMAGE in data else None
-        duration = data.get(ATTR_DURATION) if data is not None and ATTR_DURATION in data else 0
 
         payload = ({
             'message': message,
             'title': title,
-            'image': image,
-            'duration': duration
+            'data': data
         })
 
         _LOGGER.debug("Sending notification ..")
