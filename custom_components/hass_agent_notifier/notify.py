@@ -74,6 +74,9 @@ class HassAgentNotificationService(BaseNotificationService):
         title = kwargs.get(ATTR_TITLE, ATTR_TITLE_DEFAULT)
         data = kwargs.get(ATTR_DATA, None)
 
+        if data is None:
+            data = dict()
+
         image = data.get("image", None)
 
         if image is not None:
