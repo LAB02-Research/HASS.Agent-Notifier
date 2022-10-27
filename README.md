@@ -9,6 +9,10 @@
 
 # HASS.Agent Notifier
 
+Note: this integrations has been replaced by the [new integration](https://github.com/LAB02-Research/HASS.Agent-Integration). It will keep working, but for new functionality, consider switching to the new one.
+
+----
+
 This <a href="https://www.home-assistant.io" target="_blank">Home Assistant</a> integration allows you to send notifications to <a href="https://github.com/LAB02-Research/HASS.Agent" target="_blank">HASS.Agent</a>, a Windows-based Home Assistant client.
 
 Need help? Check [the documentation](https://hassagent.readthedocs.io/), visit the <a href="https://community.home-assistant.io/t/hass-agent-a-new-windows-based-client-to-receive-notifications-perform-quick-actions-and-much-more/369094" target="_blank">dedicated HA forum thread</a> or <a href="https://discord.gg/nMvqzwrVBU" target="_blank">join on Discord</a>.
@@ -32,7 +36,7 @@ Note: it won't be of much use if you don't have HASS.Agent installed & configure
 
 ### Functionality
 
-Currently, it's possible to send normal (text-based) and image notifications. 
+Send normal (text-based) and image notifications, and configure them to be *actionable* to directly interact with Home Assistant.
 
 ----
 
