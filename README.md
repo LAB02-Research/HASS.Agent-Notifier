@@ -11,6 +11,8 @@
 
 Note: this integrations has been replaced by the [new integration](https://github.com/LAB02-Research/HASS.Agent-Integration). It will keep working, but for new functionality, consider switching to the new one.
 
+**YOU DON'T NEED THIS INTEGRATION IF YOU'RE USING THE NEW `HASS.AGENT` INTEGRATION!**
+
 ----
 
 This <a href="https://www.home-assistant.io" target="_blank">Home Assistant</a> integration allows you to send notifications to <a href="https://github.com/LAB02-Research/HASS.Agent" target="_blank">HASS.Agent</a>, a Windows-based Home Assistant client.
