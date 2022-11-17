@@ -9,9 +9,11 @@
 
 # HASS.Agent Notifier
 
-Note: this integrations has been replaced by the [new integration](https://github.com/LAB02-Research/HASS.Agent-Integration). It will keep working, but for new functionality, consider switching to the new one.
+⚠️❗**YOU DON'T NEED THIS INTEGRATION IF YOU'RE USING THE NEW [HASS.AGENT](https://github.com/LAB02-Research/HASS.Agent-Integration) INTEGRATION!** ❗⚠️ 
 
-⚠️❗**YOU DON'T NEED THIS INTEGRATION IF YOU'RE USING THE NEW `HASS.AGENT` INTEGRATION!** ❗⚠️ 
+----
+
+Note: this integrations has been replaced by the [new integration](https://github.com/LAB02-Research/HASS.Agent-Integration). It will keep working, but for new functionality, consider switching to the new one.
 
 ----
 
